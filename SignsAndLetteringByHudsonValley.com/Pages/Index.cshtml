@@ -1,0 +1,35 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<!-- Carousel Start -->
+<div id="galleryCarousel" class="carousel slide mb-5 mx-auto" data-bs-ride="carousel" style="max-width: 960px;">
+    <div class="carousel-inner rounded overflow-hidden" style="max-height: 400px;">
+        <div class="carousel-item active">
+            <img src="/images/storefront-sign.jpg" class="d-block w-100 object-fit-cover" style="height: 400px;" alt="Storefront Sign">
+        </div>
+        <div class="carousel-item">
+            <img src="/images/vehicle-wrap.jpg" class="d-block w-100 object-fit-cover" style="height: 400px;" alt="Vehicle Wrap">
+        </div>
+        <div class="carousel-item">
+            <img src="/images/indoor-wall-vinyl.jpg" class="d-block w-100 object-fit-cover" style="height: 400px;" alt="Indoor Wall Vinyl">
+        </div>
+    </div>
+
+    <!-- Navigation buttons -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#galleryCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon bg-dark rounded-circle p-2" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#galleryCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon bg-dark rounded-circle p-2" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+<!-- Carousel End -->
+
+<h2 class="text-center mb-4">Welcome to Signs By Hudson Valley</h2>
+<p class="lead text-center">We create impactful signage and lettering that elevates your business presence — from storefronts to vehicle wraps.</p>
