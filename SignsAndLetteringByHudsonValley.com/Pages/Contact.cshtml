@@ -1,4 +1,65 @@
 ﻿@page
 @model SignsAndLetteringByHudsonValley.Pages.ContactModel
 @{
+    ViewData["Title"] = "Contact Us";
+}
+
+<h1 class="mb-4 text-center">Contact Us</h1>
+
+<p class="text-center mb-4">Have questions? Ready to start your custom sign or lettering project? Fill out the form below and we’ll get back to you as soon as possible.</p>
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+
+        @if (Model.IsSubmitted)
+        {
+            <div class="alert alert-success">Thank you for reaching out! We'll be in touch soon.</div>
+        }
+        else
+        {
+            <form method="post" novalidate>
+                <div class="mb-3">
+                    <label asp-for="Name" class="form-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Email" class="form-label"></label>
+                    <input asp-for="Email" type="email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Phone" class="form-label"></label>
+                    <input asp-for="Phone" type="tel" class="form-control" />
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Message" class="form-label"></label>
+                    <textarea asp-for="Message" class="form-control" rows="5"></textarea>
+                    <span asp-validation-for="Message" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+        }
+    </div>
+</div>
+
+<hr class="my-5" />
+
+<div class="text-center text-muted">
+    <h5>Signs By Hudson Valley</h5>
+    <p>
+        123 Main Street, Beacon, NY 12508<br />
+        <strong>Phone:</strong> (845) 555-1234<br />
+        <strong>Email:</strong> hello@signsbyhudsonvalley.com<br />
+        <strong>Hours:</strong> Mon–Fri, 9am–5pm
+    </p>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
 }
