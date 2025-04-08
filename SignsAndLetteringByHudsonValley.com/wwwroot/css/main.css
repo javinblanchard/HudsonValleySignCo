@@ -1603,6 +1603,9 @@ section,
   margin-bottom: 0;
   font-size: 14px;
 }
+.contact .info-item:hover a {
+    text-decoration: underline;
+}
 
 .contact .info-item:hover i {
   background: var(--accent-color);
