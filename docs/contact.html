@@ -69,12 +69,9 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
 
-                @if (Model.IsSubmitted)
-                {
+               
                 <div class="alert alert-success">Thank you for reaching out! We'll be in touch soon.</div>
-                }
-                else
-                {
+               
                 <form method="post" novalidate>
                     <div class="mb-3">
                         <label asp-for="Name" class="form-label"></label>
@@ -102,7 +99,6 @@
 
                     <button type="submit" class="btn btn-primary">Send Message</button>
                 </form>
-                }
             </div>
         </div>
 
