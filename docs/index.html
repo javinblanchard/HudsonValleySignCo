@@ -38,6 +38,47 @@
 
     <!-- Main CSS File -->
     <link href="./css/main.css" rel="stylesheet">
+    <style>
+        /* Base hero layout */
+       .hero.has-video {
+        position: relative;
+        min-height: 80vh;    /* adjust (70–90vh) to taste */
+        overflow: hidden;
+        color: #fff;
+        }
+
+        /* Background video behind everything */
+        .hero-video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;       /* behaves like background-size: cover */
+        object-position: center 90%; /* nudge focus slightly above bottom if you like */
+        z-index: 0;
+        pointer-events: none;    /* clicks pass through to carousel controls */
+        }
+
+        /* Dark gradient overlay above video */
+        .hero-overlay {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        background: linear-gradient(to bottom, rgba(0,0,0,.70), rgba(0,0,0,.40));
+        
+        }
+
+        .hero h1, .hero h2, .hero p {
+        text-shadow: 0 2px 8px rgba(0,0,0,.45);
+        }
+
+
+        /* Respect user motion preferences */
+        @media (prefers-reduced-motion: reduce) {
+        .hero-video { display: none; }
+        .hero-overlay { background: rgba(0,0,0,.55); } /* simple overlay fallback */
+        }
+    </style>
 </head>
 <body class="index-page">
     <header id="header" class="header d-flex align-items-center fixed-top">
@@ -64,63 +105,73 @@
 
     <main class="main">
         <!-- Hero Section -->
-        <section id="hero" class="hero section" style="background-image: url('./img/Hero-bg.jpg');">
+         <!-- Hero Section -->
+<section id="hero" class="hero section hero-bg has-video">
 
-            <div id="hero-carousel" data-bs-interval="5000" class="container carousel carousel-fade" data-bs-ride="carousel">
+  <!-- Background video -->
+  <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="./img/hero-poster.jpg">
+    <source src="./img/hero-bg.mp4" type="video/mp4">
+    <!-- Optional: add WebM for smaller size in some browsers -->
+    <!-- <source src="./videos/hero-bg.webm" type="video/webm"> -->
+    Your browser does not support the video tag.
+  </video>
 
-                <!-- Slide 1 -->
-                <div class="carousel-item active">
-                    <div class="carousel-container">
-                        <img src="./img/noBgWhiteWelcome.png" alt="" style="max-height: 20vh;">
-                        <p class="animate__animated animate__fadeInUp pt-4">We specialize in custom signs and lettering that bring your brand to life. From storefront displays to vehicle wraps, we craft high-quality visuals that stand out and stand the test of time. Proudly serving the Hudson Valley with reliable service and creative design.</p>
-                        <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
-                    </div>
-                </div>
+  <!-- Overlay (dark gradient) -->
+  <div class="hero-overlay"></div>
 
-                <!-- Slide 2 -->
-                <div class="carousel-item">
-                    <div class="carousel-container">
-                        <h2 class="animate__animated animate__fadeInDown">Local Service <span>You Can Trust</span></h2>
-                        <p class="animate__animated animate__fadeInUp">Based in the heart of the Hudson Valley, we’re proud to work with businesses and individuals throughout the region. Reliable, responsive, and always focused on getting the details right.</p>
-                        <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
-                    </div>
-                </div>
+  <!-- Your existing content (carousel + waves) -->
+    <div id="hero-carousel" data-bs-interval="5000" class="container carousel carousel-fade" data-bs-ride="carousel">
+      <!-- Slide 1 -->
+      <div class="carousel-item active">
+        <div class="carousel-container">
+          <img src="./img/noBgWhiteWelcome.png" alt="" style="max-height: 20vh;">
+          <p class="animate__animated animate__fadeInUp pt-4">
+            We specialize in custom signs and lettering that bring your brand to life. From storefront displays to vehicle wraps, we craft high-quality visuals that stand out and stand the test of time. Proudly serving the Hudson Valley with reliable service and creative design.
+          </p>
+          <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
+        </div>
+      </div>
 
-                <!-- Slide 3 -->
-                <div class="carousel-item">
-                    <div class="carousel-container">
-                        <h2 class="animate__animated animate__fadeInDown">Bold Vinyl Graphics. <span>Built to Move.</span></h2>
-                        <p class="animate__animated animate__fadeInUp">From USDOT numbers and fleet decals to wraps and window signage, we deliver clean, high-impact vinyl solutions that get your business noticed—on the road and in the storefront. Durable. Professional. Fast turnaround.</p>
-                        <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
-                    </div>
-                </div>
+      <!-- Slide 2 -->
+      <div class="carousel-item">
+        <div class="carousel-container">
+          <h2 class="animate__animated animate__fadeInDown" style="color: white;">Local Service <span>You Can Trust</span></h2>
+          <p class="animate__animated animate__fadeInUp">Based in the heart of the Hudson Valley, we’re proud to work with businesses and individuals throughout the region. Reliable, responsive, and always focused on getting the details right.</p>
+          <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
+        </div>
+      </div>
 
-                <a class="carousel-control-prev" href="#hero-carousel" role="button" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
-                </a>
+      <!-- Slide 3 -->
+      <div class="carousel-item">
+        <div class="carousel-container">
+          <h2 class="animate__animated animate__fadeInDown" style="color: white;">Bold Vinyl Graphics. <span>Built to Move.</span></h2>
+          <p class="animate__animated animate__fadeInUp">From USDOT numbers and fleet decals to wraps and window signage, we deliver clean, high-impact vinyl solutions that get your business noticed—on the road and in the storefront. Durable. Professional. Fast turnaround.</p>
+          <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
+        </div>
+      </div>
 
-                <a class="carousel-control-next" href="#hero-carousel" role="button" data-bs-slide="next">
-                    <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
-                </a>
+      <a class="carousel-control-prev" href="#hero-carousel" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+      </a>
+      <a class="carousel-control-next" href="#hero-carousel" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+      </a>
+    </div>
 
-            </div>
+    <!-- Waves stay above the video too -->
+    <!-- <svg class="hero-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none">
+      <defs>
+        <path id="wave-path" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path>
+      </defs>
+      <g class="wave1"><use xlink:href="#wave-path" x="50" y="3"></use></g>
+      <g class="wave2"><use xlink:href="#wave-path" x="50" y="0"></use></g>
+      <g class="wave3"><use xlink:href="#wave-path" x="50" y="9"></use></g>
+    </svg> -->
+  </div>
+</section>
+<!-- /Hero Section -->
 
-            <svg class="hero-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28 " preserveAspectRatio="none">
-                <defs>
-                    <path id="wave-path" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path>
-                </defs>
-                <g class="wave1">
-                    <use xlink:href="#wave-path" x="50" y="3"></use>
-                </g>
-                <g class="wave2">
-                    <use xlink:href="#wave-path" x="50" y="0"></use>
-                </g>
-                <g class="wave3">
-                    <use xlink:href="#wave-path" x="50" y="9"></use>
-                </g>
-            </svg>
-
-        </section><!-- /Hero Section -->
+        <!-- /Hero Section -->
         <!-- Services Section -->
         <section id="services" class="services section">
 
@@ -137,7 +188,7 @@
                     <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
                         <div class="service-item  position-relative">
                             <div class="icon">
-                                <i class="bi bi-1-square" style="color: #0dcaf0;"></i>
+                                <i class="bi bi-1-square" style="color: var(--accent-color);"></i>
                             </div>
                             <a href="service-details.html" class="stretched-link">
                                 <h3>Vehicle Lettering</h3>
@@ -149,7 +200,7 @@
                     <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
                         <div class="service-item position-relative">
                             <div class="icon">
-                                <i class="bi bi-truck" style="color: #fd7e14;"></i>
+                                <i class="bi bi-truck" style="color: var(--accent-color);"></i>
                             </div>
                             <a href="service-details.html" class="stretched-link">
                                 <h3>Vehicle Wraps and Decals</h3>
@@ -161,7 +212,7 @@
                     <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
                         <div class="service-item position-relative">
                             <div class="icon">
-                                <i class="bi bi-signpost-split" style="color: #20c997;"></i>
+                                <i class="bi bi-signpost-split" style="color: var(--accent-color);"></i>
                             </div>
                             <a href="service-details.html" class="stretched-link">
                                 <h3>Storefront Signs</h3>
@@ -170,7 +221,7 @@
                         </div>
                     </div><!-- End Service Item -->
 
-                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                    <!-- <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
                         <div class="service-item position-relative">
                             <div class="icon">
                                 <i class="bi bi-credit-card-2-front" style="color: #df1529;"></i>
@@ -180,9 +231,9 @@
                             </a>
                             <p>Non et temporibus minus omnis sed dolor esse consequatur. Cupiditate sed error ea fuga sit provident adipisci neque.</p>
                         </div>
-                    </div><!-- End Service Item -->
+                    </div> End Service Item -->
 
-                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+                    <!-- <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
                         <div class="service-item position-relative">
                             <div class="icon">
                                 <i class="bi bi-globe" style="color: #6610f2;"></i>
@@ -192,12 +243,12 @@
                             </a>
                             <p>Cumque et suscipit saepe. Est maiores autem enim facilis ut aut ipsam corporis aut. Sed animi at autem alias eius labore.</p>
                         </div>
-                    </div><!-- End Service Item -->
+                    </div>End Service Item -->
 
-                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+                    <div class="col" data-aos="fade-up" data-aos-delay="600">
                         <div class="service-item position-relative">
                             <div class="icon">
-                                <i class="bi bi-question-circle" style="color: #f3268c;"></i>
+                                <i class="bi bi-question-circle" style="color: var(--accent-color);"></i>
                             </div>
                             <a href="service-details.html" class="stretched-link">
                                 <h3>Need something else?</h3>
@@ -234,51 +285,51 @@
                     <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
 
                         <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-                            <img src="./img/masonry-portfolio/masonry-portfolio-1.jpg" class="img-fluid" alt="">
+                            <img src="./img/portfolio/Healey-parts-truck-1.jpg" class="img-fluid" alt="">
                             <div class="portfolio-info">
-                                <h4>App 1</h4>
+                                <h4>Parts Delivery Truck</h4>
                                 <p>Lorem ipsum, dolor sit</p>
-                                <a href="./img/masonry-portfolio/masonry-portfolio-1.jpg" title="App 1" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                            </div>
-                        </div><!-- End Portfolio Item -->
-
-                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
-                            <img src="./img/masonry-portfolio/masonry-portfolio-2.jpg" class="img-fluid" alt="">
-                            <div class="portfolio-info">
-                                <h4>Product 1</h4>
-                                <p>Lorem ipsum, dolor sit</p>
-                                <a href="./img/masonry-portfolio/masonry-portfolio-2.jpg" title="Product 1" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                            </div>
-                        </div><!-- End Portfolio Item -->
-
-                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
-                            <img src="./img/masonry-portfolio/masonry-portfolio-3.jpg" class="img-fluid" alt="">
-                            <div class="portfolio-info">
-                                <h4>Branding 1</h4>
-                                <p>Lorem ipsum, dolor sit</p>
-                                <a href="./img/masonry-portfolio/masonry-portfolio-3.jpg" title="Branding 1" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                                <a href="./img/portfolio/Healey-parts-truck-1.jpg" title="Parts Delivery Truck" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                                 <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
                             </div>
                         </div><!-- End Portfolio Item -->
 
                         <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-                            <img src="./img/masonry-portfolio/masonry-portfolio-4.jpg" class="img-fluid" alt="">
+                            <img src="./img/portfolio/Healey-parts-truck-2.jpg" class="img-fluid" alt="">
                             <div class="portfolio-info">
-                                <h4>App 2</h4>
+                                <h4>Parts Delivery Truck</h4>
                                 <p>Lorem ipsum, dolor sit</p>
-                                <a href="./img/masonry-portfolio/masonry-portfolio-4.jpg" title="App 2" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                                <a href="./img/portfolio/Healey-parts-truck-2.jpg" title="Parts Delivery Truck" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                                 <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
                             </div>
                         </div><!-- End Portfolio Item -->
 
-                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
-                            <img src="./img/masonry-portfolio/masonry-portfolio-5.jpg" class="img-fluid" alt="">
+                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+                            <img src="./img/portfolio/Healey-courtesy-shuttle.jpg" class="img-fluid" alt="">
                             <div class="portfolio-info">
-                                <h4>Product 2</h4>
+                                <h4>Dealership shuttle</h4>
                                 <p>Lorem ipsum, dolor sit</p>
-                                <a href="./img/masonry-portfolio/masonry-portfolio-5.jpg" title="Product 2" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                                <a href="./img/portfolio/Healey-courtesy-shuttle.jpg" title="Dealership shuttle" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                            </div>
+                        </div><!-- End Portfolio Item -->
+
+                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+                            <img src="./img/portfolio/Healey-shuttle.jpg" class="img-fluid" alt="">
+                            <div class="portfolio-info">
+                                <h4>Dealership shuttle</h4>
+                                <p>Lorem ipsum, dolor sit</p>
+                                <a href="./img/portfolio/Healey-shuttle.jpg" title="Dealership shuttle" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                            </div>
+                        </div><!-- End Portfolio Item -->
+
+                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+                            <img src="./img/portfolio/Healey-shuttle-2.jpg" class="img-fluid" alt="">
+                            <div class="portfolio-info">
+                                <h4>Dealership shuttle</h4>
+                                <p>Lorem ipsum, dolor sit</p>
+                                <a href="./img/portfolio/Healey-shuttle-2.jpg" title="Dealership shuttle" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                                 <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
                             </div>
                         </div><!-- End Portfolio Item -->
@@ -286,14 +337,14 @@
                         <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
                             <img src="./img/masonry-portfolio/masonry-portfolio-6.jpg" class="img-fluid" alt="">
                             <div class="portfolio-info">
-                                <h4>Branding 2</h4>
+                                <h4>Dealer shuttle</h4>
                                 <p>Lorem ipsum, dolor sit</p>
                                 <a href="./img/masonry-portfolio/masonry-portfolio-6.jpg" title="Branding 2" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                                 <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
                             </div>
                         </div><!-- End Portfolio Item -->
 
-                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+                        <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
                             <img src="./img/masonry-portfolio/masonry-portfolio-7.jpg" class="img-fluid" alt="">
                             <div class="portfolio-info">
                                 <h4>App 3</h4>
@@ -462,343 +513,75 @@
 
         </section><!-- /About Section -->
         <!-- Features Section -->
-        <section id="features" class="features section">
-
-            <div class="container">
-
-                <ul class="nav nav-tabs row  d-flex" data-aos="fade-up" data-aos-delay="100">
-                    <li class="nav-item col-3">
-                        <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#features-tab-1">
-                            <i class="bi bi-binoculars"></i>
-                            <h4 class="d-none d-lg-block">Modi sit est dela pireda nest</h4>
-                        </a>
-                    </li>
-                    <li class="nav-item col-3">
-                        <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-2">
-                            <i class="bi bi-box-seam"></i>
-                            <h4 class="d-none d-lg-block">Unde praesenti mara setra le</h4>
-                        </a>
-                    </li>
-                    <li class="nav-item col-3">
-                        <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-3">
-                            <i class="bi bi-brightness-high"></i>
-                            <h4 class="d-none d-lg-block">Pariatur explica nitro dela</h4>
-                        </a>
-                    </li>
-                    <li class="nav-item col-3">
-                        <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-4">
-                            <i class="bi bi-command"></i>
-                            <h4 class="d-none d-lg-block">Nostrum qui dile node</h4>
-                        </a>
-                    </li>
-                </ul><!-- End Tab Nav -->
-
-                <div class="tab-content" data-aos="fade-up" data-aos-delay="200">
-
-                    <div class="tab-pane fade active show" id="features-tab-1">
-                        <div class="row">
-                            <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
-                                <h3>Vehicle Lettering</h3>
-                                <p class="fst-italic">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                                    magna aliqua.
-                                </p>
-                                <ul>
-                                    <li>
-                                        <i class="bi bi-check2-all"></i>
-                                        <spab>Ullamco laboris nisi ut aliquip ex ea commodo consequat.</spab>
-                                    </li>
-                                    <li><i class="bi bi-check2-all"></i> <span>Duis aute irure dolor in reprehenderit in voluptate velit</span>.</li>
-                                    <li><i class="bi bi-check2-all"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</span></li>
-                                </ul>
-                                <p>
-                                    Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                                    velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                                    culpa qui officia deserunt mollit anim id est laborum
-                                </p>
-                            </div>
-                            <div class="col-lg-6 order-1 order-lg-2 text-center">
-                                <img src="./img/working-1.jpg" alt="" class="img-fluid">
-                            </div>
-                        </div>
-                    </div><!-- End Tab Content Item -->
-
-                    <div class="tab-pane fade" id="features-tab-2">
-                        <div class="row">
-                            <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
-                                <h3>Vehicle Wraps and Decals</h3>
-                                <p>
-                                    Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                                    velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                                    culpa qui officia deserunt mollit anim id est laborum
-                                </p>
-                                <p class="fst-italic">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                                    magna aliqua.
-                                </p>
-                                <ul>
-                                    <li><i class="bi bi-check2-all"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></li>
-                                    <li><i class="bi bi-check2-all"></i> <span>Duis aute irure dolor in reprehenderit in voluptate velit.</span></li>
-                                    <li><i class="bi bi-check2-all"></i> <span>Provident mollitia neque rerum asperiores dolores quos qui a. Ipsum neque dolor voluptate nisi sed.</span></li>
-                                    <li><i class="bi bi-check2-all"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</span></li>
-                                </ul>
-                            </div>
-                            <div class="col-lg-6 order-1 order-lg-2 text-center">
-                                <img src="./img/working-2.jpg" alt="" class="img-fluid">
-                            </div>
-                        </div>
-                    </div><!-- End Tab Content Item -->
-
-                    <div class="tab-pane fade" id="features-tab-3">
-                        <div class="row">
-                            <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
-                                <h3>Storefront Signs</h3>
-                                <p>
-                                    Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                                    velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                                    culpa qui officia deserunt mollit anim id est laborum
-                                </p>
-                                <ul>
-                                    <li><i class="bi bi-check2-all"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></li>
-                                    <li><i class="bi bi-check2-all"></i> <span>Duis aute irure dolor in reprehenderit in voluptate velit.</span></li>
-                                    <li><i class="bi bi-check2-all"></i> <span>Provident mollitia neque rerum asperiores dolores quos qui a. Ipsum neque dolor voluptate nisi sed.</span></li>
-                                </ul>
-                                <p class="fst-italic">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                                    magna aliqua.
-                                </p>
-                            </div>
-                            <div class="col-lg-6 order-1 order-lg-2 text-center">
-                                <img src="./img/working-3.jpg" alt="" class="img-fluid">
-                            </div>
-                        </div>
-                    </div><!-- End Tab Content Item -->
-
-                    <div class="tab-pane fade" id="features-tab-4">
-                        <div class="row">
-                            <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
-                                <h3>Wheel Skins</h3>
-                                <p>
-                                    Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                                    velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                                    culpa qui officia deserunt mollit anim id est laborum
-                                </p>
-                                <p class="fst-italic">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                                    magna aliqua.
-                                </p>
-                                <ul>
-                                    <li><i class="bi bi-check2-all"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></li>
-                                    <li><i class="bi bi-check2-all"></i> <span>Duis aute irure dolor in reprehenderit in voluptate velit.</span></li>
-                                    <li><i class="bi bi-check2-all"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</span></li>
-                                </ul>
-                            </div>
-                            <div class="col-lg-6 order-1 order-lg-2 text-center">
-                                <img src="./img/working-4.jpg" alt="" class="img-fluid">
-                            </div>
-                        </div>
-                    </div><!-- End Tab Content Item -->
-
-                </div>
-
-            </div>
-
-        </section><!-- /Features Section -->
-        <!-- Testimonials Section -->
-        <section id="testimonials" class="testimonials section">
-
-            <!-- Section Title -->
-            <div class="container section-title" data-aos="fade-up">
-                <h2>Testimonials</h2>
-                <p>What they are saying about us</p>
-            </div><!-- End Section Title -->
-
-            <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-                <div class="swiper init-swiper">
-                    <script type="application/json" class="swiper-config">
-                        {
-                          "loop": true,
-                          "speed": 600,
-                          "autoplay": {
-                            "delay": 5000
-                          },
-                          "slidesPerView": "auto",
-                          "pagination": {
-                            "el": ".swiper-pagination",
-                            "type": "bullets",
-                            "clickable": true
-                          },
-                          "breakpoints": {
-                            "320": {
-                              "slidesPerView": 1,
-                              "spaceBetween": 40
-                            },
-                            "1200": {
-                              "slidesPerView": 3,
-                              "spaceBetween": 10
-                            }
-                          }
-                        }
-                    </script>
-                    <div class="swiper-wrapper">
-
-                        <div class="swiper-slide">
-                            <div class="testimonial-item">
-                                <img src="./img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
-                                <h3>Saul Goodman</h3>
-                                <h4>Ceo &amp; Founder</h4>
-                                <div class="stars">
-                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                                </div>
-                                <p>
-                                    <i class="bi bi-quote quote-icon-left"></i>
-                                    <span>Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.</span>
-                                    <i class="bi bi-quote quote-icon-right"></i>
-                                </p>
-                            </div>
-                        </div><!-- End testimonial item -->
-
-                        <div class="swiper-slide">
-                            <div class="testimonial-item">
-                                <img src="./img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
-                                <h3>Sara Wilsson</h3>
-                                <h4>Designer</h4>
-                                <div class="stars">
-                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                                </div>
-                                <p>
-                                    <i class="bi bi-quote quote-icon-left"></i>
-                                    <span>Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.</span>
-                                    <i class="bi bi-quote quote-icon-right"></i>
-                                </p>
-                            </div>
-                        </div><!-- End testimonial item -->
-
-                        <div class="swiper-slide">
-                            <div class="testimonial-item">
-                                <img src="./img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
-                                <h3>Jena Karlis</h3>
-                                <h4>Store Owner</h4>
-                                <div class="stars">
-                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                                </div>
-                                <p>
-                                    <i class="bi bi-quote quote-icon-left"></i>
-                                    <span>Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.</span>
-                                    <i class="bi bi-quote quote-icon-right"></i>
-                                </p>
-                            </div>
-                        </div><!-- End testimonial item -->
-
-                        <div class="swiper-slide">
-                            <div class="testimonial-item">
-                                <img src="./img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
-                                <h3>Matt Brandon</h3>
-                                <h4>Freelancer</h4>
-                                <div class="stars">
-                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                                </div>
-                                <p>
-                                    <i class="bi bi-quote quote-icon-left"></i>
-                                    <span>Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.</span>
-                                    <i class="bi bi-quote quote-icon-right"></i>
-                                </p>
-                            </div>
-                        </div><!-- End testimonial item -->
-
-                        <div class="swiper-slide">
-                            <div class="testimonial-item">
-                                <img src="./img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
-                                <h3>John Larson</h3>
-                                <h4>Entrepreneur</h4>
-                                <div class="stars">
-                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                                </div>
-                                <p>
-                                    <i class="bi bi-quote quote-icon-left"></i>
-                                    <span>Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.</span>
-                                    <i class="bi bi-quote quote-icon-right"></i>
-                                </p>
-                            </div>
-                        </div><!-- End testimonial item -->
-
-                    </div>
-                    <div class="swiper-pagination"></div>
-                </div>
-
-            </div>
-
-        </section><!-- /Testimonials Section -->
+        
         <!-- Faq Section -->
         <section id="faq" class="faq section">
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
-                <h2>Frequently Asked Questions</h2>
+                <h2>FAQs</h2>
                 <p>Frequently Asked Questions</p>
             </div><!-- End Section Title -->
 
             <div class="container" data-aos="fade-up">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="custom-accordion" id="accordion-faq">
-                            <div class="accordion-item">
-                                <h2 class="mb-0">
-                                    <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-faq-1">
-                                        How to download and register?
-                                    </button>
-                                </h2>
-
-                                <div id="collapse-faq-1" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion-faq">
-                                    <div class="accordion-body">
-                                        Far far away, behind the word mountains, far from the countries
-                                        Vokalia and Consonantia, there live the blind texts. Separated
-                                        they live in Bookmarksgrove right at the coast of the Semantics,
-                                        a large language ocean.
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- .accordion-item -->
-
-                            <div class="accordion-item">
-                                <h2 class="mb-0">
-                                    <button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-faq-2">
-                                        How to create your paypal account?
-                                    </button>
-                                </h2>
-                                <div id=" collapse-faq-2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion-faq">
-                                    <div class="accordion-body">
-                                        A small river named Duden flows by their place and supplies it
-                                        with the necessary regelialia. It is a paradisematic country, in
-                                        which roasted parts of sentences fly into your mouth.
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- .accordion-item -->
-
-                            <div class="accordion-item">
-                                <h2 class="mb-0">
-                                    <button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-faq-3">
-                                        How to link your paypal and bank account?
-                                    </button>
-                                </h2>
-
-                                <div id="collapse-faq-3" class="collapse" aria-labelledby="headingThree" data-parent="#accordion-faq">
-                                    <div class="accordion-body">
-                                        When she reached the first hills of the Italic Mountains, she
-                                        had a last view back on the skyline of her hometown
-                                        Bookmarksgrove, the headline of Alphabet Village and the subline
-                                        of her own road, the Line Lane. Pityful a rethoric question ran
-                                        over her cheek, then she continued her way.
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- .accordion-item -->
-
+            <div class="row">
+                <div class="col-12">
+                <div class="custom-accordion" id="accordion-faq">
+                    
+                    <!-- FAQ 1 -->
+                    <div class="accordion-item">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-faq-1">
+                        How do I get started?
+                        </button>
+                    </h2>
+                    <div id="collapse-faq-1" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion-faq">
+                        <div class="accordion-body">
+                        The easiest way to get started is to <strong>give us a call</strong>. 
+                        Our team will walk you through the process, answer any initial questions, 
+                        and schedule a consultation to discuss your project needs. From there, 
+                        we’ll provide recommendations, pricing details, and a clear timeline so you know exactly what to expect.
                         </div>
                     </div>
+                    </div>
+                    
+                    <!-- FAQ 2 -->
+                    <div class="accordion-item">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-faq-2">
+                        Where are you located?
+                        </button>
+                    </h2>
+                    <div id="collapse-faq-2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion-faq">
+                        <div class="accordion-body">
+                        Our workshop is based in <strong>Fishkill, NY</strong>. However, you don’t need to travel to us—
+                        we specialize in <strong>mobile service</strong>. That means we come directly to your location for 
+                        installation, making the process as convenient and seamless as possible.
+                        </div>
+                    </div>
+                    </div>
+                    
+                    <!-- FAQ 3 -->
+                    <div class="accordion-item">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-faq-3">
+                        How quickly can I get my sign installed?
+                        </button>
+                    </h2>
+                    <div id="collapse-faq-3" class="collapse" aria-labelledby="headingThree" data-parent="#accordion-faq">
+                        <div class="accordion-body">
+                        Installation timelines typically range from <strong>2 to 4 weeks</strong>, depending on the scope of the project, 
+                        the complexity of the design, and material availability. We’ll provide you with a more precise estimate 
+                        during your consultation, and we always strive to complete installations as efficiently as possible 
+                        without compromising on quality.
+                        </div>
+                    </div>
+                    </div>
+                    
+                </div>
                 </div>
             </div>
+            </div>
+
         </section><!-- /Faq Section -->
     </main>
 

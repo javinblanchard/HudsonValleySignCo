@@ -731,7 +731,7 @@ section,
   line-height: 1;
   margin: 10px;
   animation-delay: 0.8s;
-  color: var(--default-color);
+  color: var(--contrast-color);
   border: 2px solid var(--accent-color);
 }
 
@@ -967,7 +967,6 @@ section,
 # Call To Action Section
 --------------------------------------------------------------*/
 .call-to-action {
-  padding: 80px 0;
   position: relative;
   clip-path: inset(0);
 }
